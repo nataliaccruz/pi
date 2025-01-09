@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+#{set title:'JON FASHION' /}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Sacola de Produtos</title>
+	<link rel="stylesheet" href="@{'/public/stylesheets/exibirSacola.css'}">
+</head>
+
+<body>
+	<div class="containerSacola">
+		<h1>Sacola de Produtos</h1>
+		<ul class="sacola-list">
+			#{list items:sacola, as:'produto'}
+			<li class="produto-item">
+				#{if produto?.nomeFoto}
+				<img src="../uploads/${produto.id}/${produto.nomeFoto}" alt="${produto.nomeFoto}">
+				#{/if}
+				#{else}
+				<p id="imgProdutoErro">Erro ao renderizar imagem...</p>
+				#{/else}
+				${produto.nome} - R$ ${produto.preco}
+				<a href="@{Produtos.removerSacola(produto.id)}" class="remove-btn">
+					<i class="fa-solid fa-trash"></i>
+				</a>
+			</li>
+			#{/list}
+		</ul>
+		<h2>Total: R$ ${total}</h2>
+
+		<div class="btn-container">
+			<a href="@{Produtos.principal()}" class="btn continuar">Continuar comprando</a>
+			<a href="@{Compras.form()}" class="btn finalizar">Finalizar compra</a>
+		</div>
+	</div>
+
+</body>
+
+</html>

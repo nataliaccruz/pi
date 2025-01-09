@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+	<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/formCompras.css'}">
+	<title>Faça suas compras</title>
+</head>
+
+<body>
+
+	<form action="@{Compras.salvar}">
+		<div class="container">
+			<h2 class="text-center">Formulário de Compra</h2>
+			<span>${session['user']}</span>
+
+			<div class="form-container">
+				<div class="form-group">
+					<label for="email">E-mail:</label>
+					<input type="text" class="form-control" name="compra.email" value="${session['email']}" readonly />
+				</div>
+
+				<div class="form-group">
+					<label for="cpf">CPF:</label>
+					<input type="text" class="form-control" name="compra.cpf" value="${c?.cpf}" placeholder="CPF" />
+				</div>
+
+				<div class="form-group">
+					<label for="metodo">Método de pagamento:</label>
+					<select id="metodo" class="form-control" name="compra.metodo" required
+						onchange="exibirFormulario()">
+						<option value="" disabled selected>Selecione</option>
+						<option value="pix">Pix</option>
+						<option value="boleto">Boleto</option>
+						<option value="cartao">Cartão</option>
+					</select>
+				</div>
+
+				<div id="form-pix" class="form-detalhe" style="display: none;">
+					<h4>Pagamento via Pix</h4>
+					<img id="QRCode Pagamento" src="@{'/public/images/qrCode.PNG'}" alt="">
+				</div>
+
+				<div id="form-boleto" class="form-detalhe" style="display: none;">
+					<h4>Pagamento via Boleto</h4>
+					<p>O boleto será gerado com os dados fornecidos e enviado por e-mail.</p>
+				</div>
+
+				<div id="form-cartao" class="form-detalhe" style="display: none;">
+					<h4>Pagamento via Cartão</h4>
+					<label for="cartao-numero">Número do Cartão:</label>
+					<input type="text" id="cartao-numero" class="form-control" placeholder="Número do cartão">
+					<label for="cartao-nome">Nome no Cartão:</label>
+					<input type="text" id="cartao-nome" class="form-control" placeholder="Nome no cartão">
+					<label for="cartao-cvv">CVV:</label>
+					<input type="text" id="cartao-cvv" class="form-control" placeholder="CVV">
+				</div>
+
+				<div class="btn-container">
+					<button type="submit" class="btn">Realizar compra</button>
+					<a href="@{Produtos.principal()}" class="btn">Continuar comprando</a>
+					<a href="@{Produtos.exibirSacola}" class="btn">Ver minhas compras</a>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div class="footer">
+		<p><strong>Total: R$ ${total}</strong></p>
+	</div>
+
+
+	<div class="img-container">
+		<img src="@{'/public/images/logo.png'}" alt="Imagem logo">
+	</div>
+
+	<script src="@{'/public/javascripts/script.js'}"></script>
+</body>
+
+</html>

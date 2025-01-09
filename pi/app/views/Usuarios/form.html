@@ -1,0 +1,68 @@
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/formUsuarios.css'}">
+
+
+<form class="register container mt-4" method="POST" action="@{Usuarios.salvar}">
+	<h2 class="text-center mb-4">Cadastro de Usuário</h2>
+
+	<div class="form-group mb-3">
+		<label for="usu.nome">Nome</label>
+		<input type="text" class="form-control" id="usu.nome" name="usu.nome" value="${c?.nome}"
+			placeholder="Digite seu nome">
+		<span class="vermelho">#{error 'usu.nome' /}</span>
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="usu.email">Email</label>
+		<input type="text" class="form-control" id="usu.email" name="usu.email" value="${c?.email}"
+			placeholder="Digite seu email">
+		<span class="vermelho">#{error 'usu.email' /}</span>
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="usu.usuario">Usuário</label>
+		<input type="text" class="form-control" id="usu.usuario" name="usu.usuario" value="${c?.usuario}"
+			placeholder="Digite seu nome de usuário">
+		<span class="vermelho">#{error 'usu.usuario' /}</span>
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="senha">Senha</label>
+		<input type="password" class="form-control" id="senha" name="senha" value="" placeholder="Digite sua senha">
+		<span class="vermelho">#{error 'usu.senha' /}</span>
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="cep">CEP</label>
+		<input type="text" class="form-control" id="cep" name="usu.cep" placeholder="Digite o CEP">
+		<button type="button" class="btn btn-outline-primary mt-2" onclick="buscarEndereco()">Buscar Endereço</button>
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="cidade">Cidade</label>
+		<input type="text" class="form-control" id="cidade" name="usu.cidade" readonly placeholder="Cidade">
+		<span class="vermelho">#{error 'usu.cidade' /}</span>
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="uf">Estado</label>
+		<input type="text" class="form-control" id="uf" name="usu.uf" readonly placeholder="Estado">
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="endereco">Endereço</label>
+		<input type="text" class="form-control" id="endereco" name="usu.endereco" placeholder="Digite a rua/logradouro">
+		<span class="vermelho">#{error 'usu.endereco' /}</span>
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="usu.numeroCasa">Número</label>
+		<input type="text" class="form-control" id="usu.numeroCasa" name="usu.numeroCasa"
+			placeholder="Digite o número da casa">
+		<span class="vermelho">#{error 'usu.numeroCasa' /}</span>
+	</div>
+
+	<button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="@{'/public/javascripts/script.js'}"></script>
+</form>

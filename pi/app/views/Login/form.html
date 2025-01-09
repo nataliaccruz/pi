@@ -1,0 +1,23 @@
+
+
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/formLogin.css'}">
+
+#{if flash.error}
+	<div class="msgErro">${flash.error}</div>
+#{/if}
+
+<div class="login-container">
+	<form class="login-form" action="@{Login.logar}" method="post">
+		<h1>Bem-vindo à Jon Fashion</h1>
+		<p>Faça seu login para acessar sua conta</p>
+		<div class="form-group">
+			<label for="usuario">Usuário</label>
+			<input type="text" id="usuario" name="usuario" placeholder="Digite seu nome de usuário" required>
+		</div>
+		<div class="form-group">
+			<label for="senha">Senha</label>
+			<input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+		</div>
+		<button class="btn-login" type="submit">Entrar</button>
+	</form>
+</div>
